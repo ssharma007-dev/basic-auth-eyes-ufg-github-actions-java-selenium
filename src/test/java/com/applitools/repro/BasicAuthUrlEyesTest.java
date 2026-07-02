@@ -16,14 +16,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
-/**
- * Minimal reproducer: opens a basic-auth-protected URL in headless Chrome
- * and takes a single Applitools Eyes checkpoint. No login flow, no extra
- * steps — just enough to confirm what a real browser renders at that URL.
- *
- * Configure via environment variables (no credentials in source):
- *   APPLITOOLS_API_KEY, URL, BASIC_AUTH_USERNAME, BASIC_AUTH_PASSWORD
- */
 public class BasicAuthUrlEyesTest {
 
     private static final String URL = System.getenv("URL");
@@ -77,7 +69,6 @@ public class BasicAuthUrlEyesTest {
         }
     }
 
-    /** Embeds basic-auth credentials directly in the URL (scheme://user:pass@host/...). */
     private static String withEmbeddedCredentials(String url, String username, String password) {
         URI uri = URI.create(url);
         String userInfo = URLEncoder.encode(username, StandardCharsets.UTF_8)
